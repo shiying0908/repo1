@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+    http://www.springframework.org/schema/aop
+    http://www.springframework.org/schema/aop/spring-aop.xsd
+     http://www.springframework.org/schema/tx
+        http://www.springframework.org/schema/tx/spring-tx.xsd
+">
+
+    <!--导入hibernate相关配置-->
+    <import resource="hibernateApplication.xml"/>
+    <bean id="loginAction" class="com.it666.web.LoginAction" scope="prototype">
+        <property name="loginService" ref="loginService"/>
+    </bean>
+    <bean id="loginService" class="com.it666.service.impl.LoginServiceImpl">
+        <property name="userDao" ref="userDao"></property>
+    </bean>
+    <bean id="userDao" class="com.it666.dao.impl.UserDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory"></property>
+    </bean>
+
+    <bean id="categoryAction" class="com.it666.web.CategoryAction" scope="prototype">
+        <property name="categoryService" ref="categoryService"></property>
+    </bean>
+    <bean id="categoryService" class="com.it666.service.impl.CategoryServiceImpl">
+        <property name="categoryDao" ref="categoryDao"></property>
+    </bean>
+    <bean id="categoryDao" class="com.it666.dao.impl.CategoryDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory"></property>
+    </bean>
+</beans>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
+<struts>
+
+    <package name="struts" extends="struts-default">
+        <!--spring 当中的id-->
+        <action name="loginAction_*" class="com.it666.web.LoginAction" method="{1}"><!--默认login方法是不能访问的,需要加入<allowed-methods>login</allowed-methods>-->
+            <allowed-methods>login</allowed-methods>
+        </action>
+    </package>
+
+</struts>
